@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tiny-link", "tiny-link.csproj", "{CADBBD85-EE76-45CB-BA6B-42BDE080CABB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CADBBD85-EE76-45CB-BA6B-42BDE080CABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CADBBD85-EE76-45CB-BA6B-42BDE080CABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CADBBD85-EE76-45CB-BA6B-42BDE080CABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CADBBD85-EE76-45CB-BA6B-42BDE080CABB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59EDA57E-2F92-4CEA-99C7-51168ABAF34A}
+	EndGlobalSection
+EndGlobal

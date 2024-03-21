@@ -1,0 +1,6 @@
+@tiny_link_HostAddress = http://localhost:5021
+
+GET {{tiny_link_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

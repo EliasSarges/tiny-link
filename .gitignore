@@ -9,7 +9,7 @@
 *.zip
 *.rar
 *.gz
-
+*.db
 # Visual Studio
 .vscode/
 .vs/

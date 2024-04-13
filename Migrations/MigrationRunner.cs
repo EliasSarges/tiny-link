@@ -18,7 +18,5 @@ public static class MigrationRunner
         command.ExecuteNonQuery();
       }
     }
-
-    Console.Write(connection);
   }
 }

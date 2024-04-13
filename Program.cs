@@ -6,11 +6,12 @@ var app = builder.Build();
 
 app.RegisterMiddlewares();
 
-app.MapGet("/", () =>
+app.RegisterLinkController();
+
+
+if (!File.Exists("database.db"))
 {
-    return "Hello World!";
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+  MigrationRunner.RunMigrations();
+}
 
 app.Run();

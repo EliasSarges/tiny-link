@@ -24,4 +24,17 @@ public class LinkRepository
 
     return links;
   }
+
+  async public Task<Link> CreateLink(Link newLink)
+  {
+    using (var sqliteConnection = new DatabaseManager())
+    {
+      var command = sqliteConnection.CreateCommand();
+
+      command.CommandText = $"INSERT INTO links (id, url, clicks) values ('{newLink.Id}', '{newLink.Url}', {newLink.Clicks})";
+      await command.ExecuteNonQueryAsync();
+    }
+
+    return newLink;
+  }
 }

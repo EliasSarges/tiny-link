@@ -29,7 +29,8 @@ public class LinkRepository
     using (var sqliteConnection = new DatabaseManager())
     {
       var command = sqliteConnection.CreateCommand();
-      command.CommandText = $"SELECT * FROM links where id = '{id}'";
+      command.CommandText = $"SELECT * FROM links where id = $id";
+      command.Parameters.AddWithValue("$id", id);
 
       using (var reader = await command.ExecuteReaderAsync())
       {
@@ -50,7 +51,12 @@ public class LinkRepository
     {
       var command = sqliteConnection.CreateCommand();
 
-      command.CommandText = $"INSERT INTO links (id, url, clicks) values ('{newLink.Id}', '{newLink.Url}', {newLink.Clicks})";
+      command.CommandText = "INSERT INTO links (id, url, clicks) values ($id, $url, $clicks)";
+
+      command.Parameters.AddWithValue("$id", newLink.Id);
+      command.Parameters.AddWithValue("$url", newLink.Url);
+      command.Parameters.AddWithValue("$clicks", newLink.Clicks);
+
       await command.ExecuteNonQueryAsync();
     }
 
@@ -63,7 +69,8 @@ public class LinkRepository
     {
       var command = sqliteConnection.CreateCommand();
 
-      command.CommandText = $"DELETE FROM links WHERE id = '{id}'";
+      command.CommandText = $"DELETE FROM links WHERE id = $id";
+      command.Parameters.AddWithValue("$id", id);
 
       await command.ExecuteNonQueryAsync();
     }

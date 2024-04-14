@@ -4,11 +4,15 @@ public class LinksService(LinkRepository linksRepository)
 {
   private readonly LinkRepository linksRepository = linksRepository;
 
-  public List<Link> FindAll()
+  async public Task<List<Link>> FindAll()
   {
-    return linksRepository.FindAll();
+    return await linksRepository.FindAll();
   }
 
+  public async Task<Link?> FindById(string id)
+  {
+    return await linksRepository.FindById(id);
+  }
   async public Task<Link> CreateLink(CreateLinkDTO data)
   {
     var id = Nanoid.Generate();

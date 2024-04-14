@@ -18,6 +18,11 @@ public class LinksService(LinkRepository linksRepository)
     var id = Nanoid.Generate();
     return await linksRepository.CreateLink(new Link(id, data.Url, 0));
   }
+
+  async public Task DeleteLink(string id)
+  {
+    await linksRepository.DeleteLink(id);
+  }
 }
 
 public class CreateLinkDTO

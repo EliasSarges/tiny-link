@@ -56,4 +56,16 @@ public class LinkRepository
 
     return newLink;
   }
+
+  async public Task DeleteLink(string id)
+  {
+    using (var sqliteConnection = new DatabaseManager())
+    {
+      var command = sqliteConnection.CreateCommand();
+
+      command.CommandText = $"DELETE FROM links WHERE id = '{id}'";
+
+      await command.ExecuteNonQueryAsync();
+    }
+  }
 }

@@ -1,5 +1,3 @@
-using System.Text.Json;
-
 public static class LinkController
 {
   private static readonly LinksService linksService = new LinksService(new LinkRepository());
@@ -22,6 +20,24 @@ public static class LinkController
       context.Response.StatusCode = StatusCodes.Status201Created;
 
       await context.Response.WriteAsJsonAsync(newLink);
+    });
+
+
+    router.MapDelete("/links/{id}", async (HttpContext context, string id) =>
+    {
+      var link = await linksService.FindById(id);
+
+      if (link == null)
+      {
+        context.Response.StatusCode = StatusCodes.Status404NotFound;
+        await context.Response.WriteAsync("Link not found");
+
+        return;
+      }
+
+      await linksService.DeleteLink(id);
+
+      context.Response.StatusCode = StatusCodes.Status204NoContent;
     });
   }
 }

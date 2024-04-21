@@ -3,7 +3,7 @@ public static class LinkController
   private static readonly LinksService linksService = new LinksService(new LinkRepository());
   public static void RegisterLinkController(this IEndpointRouteBuilder router)
   {
-    router.MapGet("/links", linksService.FindAll);
+    router.MapGet("/links", async () => await linksService.FindAll());
 
     router.MapPost("/links", async (HttpContext context, CreateLinkDTO data) =>
     {
@@ -38,6 +38,22 @@ public static class LinkController
       await linksService.DeleteLink(id);
 
       context.Response.StatusCode = StatusCodes.Status204NoContent;
+    });
+
+    router.MapGet("/redirect/{id}", async (HttpContext context, string id) =>
+    {
+      var link = await linksService.FindById(id);
+
+      if (link == null)
+      {
+        context.Response.StatusCode = StatusCodes.Status404NotFound;
+        await context.Response.WriteAsync("Link not found");
+
+        return;
+      }
+
+      context.Response.StatusCode = StatusCodes.Status200OK;
+      context.Response.Redirect(link.Url);
     });
   }
 }
